@@ -22,6 +22,17 @@ class Site {
         return this.num;
     }
 
+    public int getBorneSup(){
+        return BORNE_SUP;
+    }
+
+    public int getBorneInf(){
+        return BORNE_INF;
+    }
+
+    public int getInit(){
+        return STOCK_INIT;
+    }
     public synchronized void emprunter() {
         
         while (this.stock == 0) {
