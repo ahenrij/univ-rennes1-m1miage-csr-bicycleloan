@@ -11,7 +11,7 @@ class SystemeEmprunt {
     private Client[] clients = new Client[MAX_CLIENTS];
     private Camion camion = null;
 
-    private int nbClients = 0;
+    //private int nbClients = 0;
 
     /* Constructeur du systeme d'emprunt */
     SystemeEmprunt() {
