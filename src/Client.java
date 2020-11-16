@@ -13,17 +13,9 @@ public class Client extends Thread {
 
     public void run() {
 
-        while (this.siteDepart.getStock() == 0) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
         System.out.println("Le client " + getName() + " emprunte un vélo du site " + siteDepart.getNum());
         siteDepart.emprunter();
-        
+
         this.faireTrajet();
 
         System.out.println("Le client " + getName() + " restituer un vélo sur le site " + siteArrivee.getNum());
@@ -36,9 +28,10 @@ public class Client extends Thread {
 
     private void faireTrajet() {
         try {
-            int dureeTrajet = dureeUnitaire* this.distanceSites();
-            Thread.sleep(dureeTrajet); // Attend pendant une duree proportionnelle entre les sites
+            int dureeTrajet = dureeUnitaire * this.distanceSites();
             System.out.println("Le client " + getName() + " fait le trajet pour une durée de " + dureeTrajet + " ms");
+
+            Thread.sleep(dureeTrajet); // Dors pendant une duree proportionnelle entre les sites
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

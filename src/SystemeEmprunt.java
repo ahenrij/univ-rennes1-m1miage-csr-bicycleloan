@@ -28,12 +28,22 @@ class SystemeEmprunt {
             int siteDepId = r.nextInt(NB_SITES);
             int siteArrId = r.nextInt(NB_SITES);
             clients[i] = new Client(sites[siteDepId], sites[siteArrId]);
-
+            clients[i].start();
         }
 
         /* Instanciation du camion */
         camion = new Camion(sites);
         camion.start();
+
+        try {
+            for (int i = 0; i < MAX_CLIENTS; i++) {
+                clients[i].join();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        
+        System.out.println("All done !");
     }
 
     /* Point d'entree du programme */
