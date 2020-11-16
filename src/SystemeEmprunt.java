@@ -33,12 +33,7 @@ class SystemeEmprunt {
 
         /* Instanciation du camion */
         camion = new Camion(sites);
-
-        boolean oneAlive = false;
-        do {    
-            camion.start();
-            //rafraichir la valeur de oneAlive
-        } while(oneAlive);
+        camion.start();
     }
 
     /* Point d'entree du programme */
@@ -46,5 +41,4 @@ class SystemeEmprunt {
 
         new SystemeEmprunt();
     }
-
 } // class SystemeEmprunt
