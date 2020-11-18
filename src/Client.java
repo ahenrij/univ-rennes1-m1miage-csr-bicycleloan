@@ -18,7 +18,7 @@ public class Client extends Thread {
 
         this.faireTrajet();
 
-        System.out.println("Le client " + getName() + " restituer un vélo sur le site " + siteArrivee.getNum());
+        System.out.println("Le client " + getName() + " restitue un vélo sur le site " + siteArrivee.getNum());
         siteArrivee.restituer();
     }
 

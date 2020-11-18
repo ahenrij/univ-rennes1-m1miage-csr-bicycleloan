@@ -1,23 +1,24 @@
 
 public class Camion extends Thread {
-    
+
     private Site[] sites;
-    private int stock = 10;
+    private int stock;
 
     public Camion(Site[] sites) {
         this.sites = sites;
-        setDaemon(true); //Is killed by JVM when all others processes are done
+        this.stock = 10; // initialize stock to avoid lack
+        setDaemon(true); // Is killed by JVM when all others processes are done
     }
 
     public void run() {
 
         while (true) {
-        
-            for (int i=0; i < sites.length; i++) {
-                
+
+            for (int i = 0; i < sites.length; i++) {
+
                 Site site = sites[i];
 
-                synchronized(site) {
+                synchronized (site) {
                     int siteStock = site.getStock();
 
                     if (siteStock > Site.BORNE_SUP) {
@@ -27,7 +28,7 @@ public class Camion extends Thread {
                         this.stock += siteStock - Site.STOCK_INIT;
                         site.setStock(Site.STOCK_INIT);
                         System.out.println("Passage camion sur le site " + site.getNum() + ". stock : " + siteStock
-                                + " vélos, remis à " + Site.STOCK_INIT);
+                                + " vélos, mis à " + Site.STOCK_INIT + " vélos");
 
                     } else if (siteStock < Site.BORNE_INF) {
 
@@ -39,7 +40,7 @@ public class Camion extends Thread {
                         this.stock -= stockRecharge;
                         site.setStock(siteStock + stockRecharge);
                         System.out.println("Passage camion sur le site " + site.getNum() + ". stock : " + siteStock
-                                + " vélos, remis à " + (siteStock + stockRecharge));
+                                + " vélos, mis à " + (siteStock + stockRecharge) + " vélos");
                     }
                 }
             }
